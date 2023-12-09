@@ -10,17 +10,14 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-    
-     login() async {
+
+    login() async {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
-                email: emailController.text,
-                password: passwordController.text);
+                email: emailController.text, password: passwordController.text);
         Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const HomeView()));
+            context, MaterialPageRoute(builder: (context) => const HomeView()));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           print('The password provided is too weak.');
@@ -31,9 +28,12 @@ class LoginView extends StatelessWidget {
         print(e);
       }
     }
+
+  
+
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40),
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -44,6 +44,9 @@ class LoginView extends StatelessWidget {
                 hintText: 'Enter email address',
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
             TextField(
               controller: passwordController,
               decoration: const InputDecoration(
@@ -51,9 +54,17 @@ class LoginView extends StatelessWidget {
                 hintText: 'Enter password',
               ),
             ),
-            ElevatedButton(onPressed: () {
-              login();
-            }, child: Text("Login")),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  login();
+                },
+                child: Text("Login")),
+            SizedBox(
+              height: 20,
+            ),
             TextButton(
               onPressed: () {
                 Navigator.push(

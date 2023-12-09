@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,6 +43,16 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyA7mMFpxRkTxsSy9i4SMeYDQdHLtyO2txs',
+    appId: '1:603967952270:web:afe46fc60c98434333c0df',
+    messagingSenderId: '603967952270',
+    projectId: 'rj-flutter-batch2-project1',
+    authDomain: 'rj-flutter-batch2-project1.firebaseapp.com',
+    storageBucket: 'rj-flutter-batch2-project1.appspot.com',
+    measurementId: 'G-FNNXZ8X36B',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyD4Bq6hT0XlJzRvzPPTNzXEKxwOxfJPfGs',
     appId: '1:603967952270:android:4e22a1bc311ad68b33c0df',
@@ -64,5 +68,14 @@ class DefaultFirebaseOptions {
     projectId: 'rj-flutter-batch2-project1',
     storageBucket: 'rj-flutter-batch2-project1.appspot.com',
     iosBundleId: 'com.example.flutterFirebaseIntegration',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBkgJF-fLFR-RLmwwgm96qfYeopimrKQlU',
+    appId: '1:603967952270:ios:c5bd28bd0632e6c833c0df',
+    messagingSenderId: '603967952270',
+    projectId: 'rj-flutter-batch2-project1',
+    storageBucket: 'rj-flutter-batch2-project1.appspot.com',
+    iosBundleId: 'com.example.flutterFirebaseIntegration.RunnerTests',
   );
 }
